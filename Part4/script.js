@@ -24,6 +24,9 @@ function getDataAll(url) {
         return valueKey[0] === "a" && valueKey[1] === "b";
       });
 
+      userA.innerHTML = "";
+      userAB.innerHTML = "";
+
       filteredDataA.forEach((dataElement) => {
         let div = document.createElement("div");
         let objStr = JSON.stringify(dataElement);
@@ -38,7 +41,6 @@ function getDataAll(url) {
         userAB.appendChild(div);
       });
     })
-    .then(() => btnAll.removeEventListener("click", getDataAll))
     .catch((error) => console.log(error.message));
 }
 
@@ -54,12 +56,16 @@ function getDataA(url) {
     })
     .then((data) => {
       let userA = document.querySelector(".user-a");
+      let userAB = document.querySelector(".user-ab");
 
       let filteredDataA = data.filter((dataElement) => {
         let element = dataElement.title;
         let valueKey = element.split("");
         return valueKey[0] === "a";
       });
+
+      userA.innerHTML = "";
+      userAB.innerHTML = "";
 
       filteredDataA.forEach((dataElement) => {
         let div = document.createElement("div");
@@ -68,7 +74,6 @@ function getDataA(url) {
         userA.appendChild(div);
       });
     })
-    .then(() => btnA.removeEventListener("click", getDataA))
     .catch((error) => console.log(error.message));
 }
 
@@ -83,6 +88,7 @@ function getDataAB(url) {
       throw new Error(`Error: ${response.status}`);
     })
     .then((data) => {
+      let userA = document.querySelector(".user-a");
       let userAB = document.querySelector(".user-ab");
 
       let filteredDataAB = data.filter((dataElement) => {
@@ -91,6 +97,9 @@ function getDataAB(url) {
         return valueKey[0] === "a" && valueKey[1] === "b";
       });
 
+      userA.innerHTML = "";
+      userAB.innerHTML = "";
+
       filteredDataAB.forEach((dataElement) => {
         let div = document.createElement("div");
         let objStr = JSON.stringify(dataElement);
@@ -98,7 +107,6 @@ function getDataAB(url) {
         userAB.appendChild(div);
       });
     })
-    .then(() => btnAB.removeEventListener("click", getDataAB))
     .catch((error) => console.log(error.message));
 }
 
